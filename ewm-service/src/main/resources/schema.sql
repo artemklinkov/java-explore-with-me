@@ -8,16 +8,9 @@ CREATE TABLE IF NOT EXISTS users
     IDENTITY
     PRIMARY
     KEY,
-    name
-    VARCHAR
-(
-    255
-) NOT NULL,
-    email VARCHAR
-(
-    128
-) NOT NULL UNIQUE
-    );
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(128) NOT NULL UNIQUE
+);
 
 CREATE TABLE IF NOT EXISTS categories
 (
@@ -29,17 +22,9 @@ CREATE TABLE IF NOT EXISTS categories
     IDENTITY
     PRIMARY
     KEY,
-    name
-    VARCHAR
-    NOT
-    NULL,
-    CONSTRAINT
-    UQ_CATEGORY_NAME
-    UNIQUE
-(
-    name
-)
-    );
+    name VARCHAR(255) NOT NULL,
+    CONSTRAINT UQ_CATEGORY_NAME UNIQUE(name)
+);
 
 CREATE TABLE IF NOT EXISTS events
 (
@@ -51,19 +36,9 @@ CREATE TABLE IF NOT EXISTS events
     IDENTITY
     PRIMARY
     KEY,
-    title
-    VARCHAR
-(
-    120
-) NOT NULL,
-    annotation VARCHAR
-(
-    2000
-) NOT NULL,
-    description VARCHAR
-(
-    7000
-) NOT NULL,
+    title VARCHAR(120) NOT NULL,
+    annotation VARCHAR(2000) NOT NULL,
+    description VARCHAR(7000) NOT NULL,
     category_id BIGINT NOT NULL,
     event_date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     location_lat DOUBLE PRECISION,
@@ -73,7 +48,7 @@ CREATE TABLE IF NOT EXISTS events
     confirmed_requests BIGINT,
     request_moderation BOOLEAN NOT NULL,
     initiator_id BIGINT NOT NULL,
-    state VARCHAR NOT NULL,
+    state VARCHAR(100) NOT NULL,
     created_on TIMESTAMP
                          WITHOUT TIME ZONE NOT NULL,
     published_on TIMESTAMP
@@ -116,7 +91,7 @@ CREATE TABLE IF NOT EXISTS requests
     NOT
     NULL,
     state
-    VARCHAR
+    VARCHAR(100)
     NOT
     NULL,
     created_on
@@ -161,7 +136,7 @@ CREATE TABLE IF NOT EXISTS compilations
     PRIMARY
     KEY,
     title
-    VARCHAR
+    VARCHAR(300)
     NOT
     NULL,
     pinned
@@ -223,17 +198,11 @@ CREATE TABLE IF NOT EXISTS comments
     PRIMARY
     KEY,
     text
-    varchar
-(
-    2000
-) NOT NULL,
+    VARCHAR(2000) NOT NULL,
     author_id BIGINT NOT NULL,
     created TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     event_id BIGINT NOT NULL,
-    status VARCHAR
-(
-    20
-) NOT NULL,
+    status VARCHAR(20) NOT NULL,
     CONSTRAINT FK_USER_COMMENT FOREIGN KEY
 (
     author_id

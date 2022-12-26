@@ -9,14 +9,8 @@ CREATE TABLE IF NOT EXISTS hits
     PRIMARY
     KEY,
     app
-    VARCHAR
-(
-    255
-) NOT NULL,
+    VARCHAR(255) NOT NULL,
     uri VARCHAR NOT NULL,
-    ip VARCHAR
-(
-    46
-) NOT NULL,
+    ip VARCHAR(46) NOT NULL,
     created TIMESTAMP WITHOUT TIME ZONE NOT NULL
-    );
+);
