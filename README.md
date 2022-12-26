@@ -15,3 +15,6 @@ ewm-main-service-spec.json, ewm-stats-service-spec.json.
 1. Clone c github
 2. mvn clean package
 3. docker-compose up
+
+
+**Pull Request** https://github.com/artemklinkov/java-explore-with-me/pull/2
