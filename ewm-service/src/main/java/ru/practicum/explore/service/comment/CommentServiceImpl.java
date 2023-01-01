@@ -61,7 +61,7 @@ public class CommentServiceImpl implements CommentService {
     public CommentDto updateCommentByUser(Long userId, UpdateCommentRequest updateCommentRequest) {
         Comment comment = validateAuthority(userId, updateCommentRequest.getId());
         if (!comment.getStatus().equals(CommentStatus.PENDING)) {
-            throw new NotAvailableException("The comment is already published");
+            throw new NotAvailableException("The comment is already published or rejected");
         }
         comment.setText(updateCommentRequest.getText());
         return commentMapper.toDto(commentRepository.save(comment));
