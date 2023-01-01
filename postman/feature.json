@@ -349,7 +349,7 @@
 							"const target = pm.response.json();",
 							"",
 							"pm.test(\"Пользователь не может обновить текст опубликованного комментария\", function() {",
-							"    pm.expect(target.message).equal(\"The comment is already published\");",
+							"    pm.expect(target.message).equal(\"The comment is already published or rejected\");",
 							"    pm.expect(target.status).equal(\"FORBIDDEN\");      ",
 							"}",
 							"",
@@ -522,7 +522,13 @@
 							"    pm.response.to.be.withBody;",
 							"    pm.response.to.be.json;",
 							"});",
-							""
+							"",
+							"pm.test(\"Пользователь не может обновить текст опубликованного комментария\", function() {",
+							"    pm.expect(target.message).equal(\"The comment is already published or rejected\");",
+							"    pm.expect(target.status).equal(\"FORBIDDEN\");      ",
+							"}",
+							"",
+							");"
 						],
 						"type": "text/javascript"
 					}
