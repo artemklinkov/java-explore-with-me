@@ -523,6 +523,8 @@
 							"    pm.response.to.be.json;",
 							"});",
 							"",
+							"const target = pm.response.json();",
+							"",
 							"pm.test(\"Пользователь не может обновить текст опубликованного комментария\", function() {",
 							"    pm.expect(target.message).equal(\"The comment is already published or rejected\");",
 							"    pm.expect(target.status).equal(\"FORBIDDEN\");      ",
