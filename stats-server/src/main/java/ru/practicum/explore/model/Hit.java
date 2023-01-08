@@ -16,6 +16,7 @@ public class Hit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hit_id")
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     private String app;
