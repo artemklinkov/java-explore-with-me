@@ -26,17 +26,15 @@ public class Event {
     private String title;
     private String annotation;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     @ToString.Exclude
     private Category category;
     @Column(name = "event_date")
     private LocalDateTime eventDate;
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "lat", column = @Column(name = "location_lat")),
-            @AttributeOverride(name = "lon", column = @Column(name = "location_lon")),
-    })
+    @AttributeOverride(name = "lat", column = @Column(name = "location_lat"))
+    @AttributeOverride(name = "lon", column = @Column(name = "location_lon"))
     private Location location;
     private Boolean paid;
     @Column(name = "participant_limit")
@@ -45,7 +43,7 @@ public class Event {
     private Long confirmedRequests;
     @Column(name = "request_moderation")
     private Boolean requestModeration;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "initiator_id")
     @ToString.Exclude
     private User initiator;

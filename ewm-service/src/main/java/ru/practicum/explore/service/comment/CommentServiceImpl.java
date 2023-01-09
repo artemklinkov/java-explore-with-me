@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
@@ -33,6 +34,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<CommentDto> findCommentsByEvent(Long eventId, PageRequest pageRequest) {
         return commentRepository.findAllByEventIdAndStatus(eventId, CommentStatus.CONFIRMED, pageRequest)
                 .stream()
@@ -41,6 +43,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CommentDto findCommentById(Long commentId) {
         return commentMapper.toDto(validateCommentByStatus(commentId, CommentStatus.CONFIRMED));
     }
@@ -56,7 +59,6 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    @Transactional
     public CommentDto updateCommentByUser(Long userId, Long commentId, CommentDto updateCommentRequest) {
         Comment comment = validateAuthority(userId, commentId);
         if (!comment.getStatus().equals(CommentStatus.PENDING)) {
@@ -67,19 +69,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    @Transactional
     public void deleteCommentByUser(Long userId, Long commentId) {
         validateAuthority(userId, commentId);
         commentRepository.deleteById(commentId);
     }
 
     @Override
-    @Transactional
     public void deleteCommentByAdmin(Long commentId) {
         commentRepository.deleteById(commentId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<CommentDto> findCommentsByUser(Long userId, PageRequest pageRequest) {
         return commentRepository.findAllByAuthorId(userId, pageRequest)
                 .stream()
@@ -104,6 +105,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<CommentDto> findCommentsByAdmin(List<Long> users, List<CommentStatus> states, LocalDateTime rangeStart,
                                                 LocalDateTime rangeEnd, PageRequest pageRequest) {
         return commentRepository.findCommentsByAdmin(users, states, rangeStart, rangeEnd, pageRequest)
