@@ -197,7 +197,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1,\n    \"text\":\"NEW TEXT\"\n}",
+					"raw": "{\n    \"text\":\"NEW TEXT\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -205,7 +205,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/comments/",
+					"raw": "{{baseUrl}}/users/:userId/comments/1",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -213,7 +213,7 @@
 						"users",
 						":userId",
 						"comments",
-						""
+						"1"
 					],
 					"variable": [
 						{
@@ -364,7 +364,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1,\n    \"text\":\"NEW TEXT\"\n}",
+					"raw": "{\n    \"text\":\"NEW TEXT\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -372,7 +372,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/comments/",
+					"raw": "{{baseUrl}}/users/:userId/comments/1",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -380,7 +380,7 @@
 						"users",
 						":userId",
 						"comments",
-						""
+						"1"
 					],
 					"variable": [
 						{
@@ -541,7 +541,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 2,\n    \"text\":\"NEW TEXT\"\n}",
+					"raw": "{\n    \"text\":\"NEW TEXT\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -549,7 +549,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/users/:userId/comments/",
+					"raw": "{{baseUrl}}/users/:userId/comments/2",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -557,7 +557,7 @@
 						"users",
 						":userId",
 						"comments",
-						""
+						"2"
 					],
 					"variable": [
 						{

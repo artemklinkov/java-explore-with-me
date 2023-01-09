@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explore.dto.comment.CommentDto;
 import ru.practicum.explore.dto.comment.NewCommentDto;
-import ru.practicum.explore.dto.comment.UpdateCommentRequest;
 import ru.practicum.explore.dto.comment.mapper.CommentMapper;
 import ru.practicum.explore.handler.exception.AccessLevelException;
 import ru.practicum.explore.handler.exception.NotAvailableException;
@@ -58,8 +57,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public CommentDto updateCommentByUser(Long userId, UpdateCommentRequest updateCommentRequest) {
-        Comment comment = validateAuthority(userId, updateCommentRequest.getId());
+    public CommentDto updateCommentByUser(Long userId, Long commentId, CommentDto updateCommentRequest) {
+        Comment comment = validateAuthority(userId, commentId);
         if (!comment.getStatus().equals(CommentStatus.PENDING)) {
             throw new NotAvailableException("The comment is already published or rejected");
         }
@@ -71,6 +70,12 @@ public class CommentServiceImpl implements CommentService {
     @Transactional
     public void deleteCommentByUser(Long userId, Long commentId) {
         validateAuthority(userId, commentId);
+        commentRepository.deleteById(commentId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCommentByAdmin(Long commentId) {
         commentRepository.deleteById(commentId);
     }
 

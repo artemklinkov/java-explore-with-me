@@ -52,4 +52,12 @@ public class AdminCommentController {
         return commentService.findCommentsByAdmin(users, states, rangeStart, rangeEnd,
                 PageRequest.of(from / size, size));
     }
+
+    @DeleteMapping("/{commentId}")
+    public void deleteCommentByUser(@PathVariable Long commentId,
+                                    HttpServletRequest request) {
+        log.info("{}: {}; delete comment with id = {} by admin", request.getRequestURI(),
+                request.getRemoteAddr(), commentId);
+        commentService.deleteCommentByAdmin(commentId);
+    }
 }

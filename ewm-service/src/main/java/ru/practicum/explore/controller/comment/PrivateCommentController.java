@@ -6,7 +6,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.explore.dto.comment.CommentDto;
 import ru.practicum.explore.dto.comment.NewCommentDto;
-import ru.practicum.explore.dto.comment.UpdateCommentRequest;
 import ru.practicum.explore.service.comment.CommentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +31,13 @@ public class PrivateCommentController {
         return commentService.createCommentByUser(userId, newCommentDto);
     }
 
-    @PutMapping
-    public CommentDto updateCommentByUser(@PathVariable Long userId,
-                                          @RequestBody @Valid UpdateCommentRequest updateCommentRequest,
+    @PutMapping("/{commentId}")
+    public CommentDto updateCommentByUser(@PathVariable Long userId, @PathVariable Long commentId,
+                                          @RequestBody @Valid CommentDto updateCommentRequest,
                                           HttpServletRequest request) {
         log.info("{}: {}; update comment by {} by user with id = {}", request.getRequestURI(), request.getRemoteAddr(),
                 updateCommentRequest.toString(), userId);
-        return commentService.updateCommentByUser(userId, updateCommentRequest);
+        return commentService.updateCommentByUser(userId, commentId, updateCommentRequest);
     }
 
     @DeleteMapping("/{commentId}")

@@ -3,7 +3,6 @@ package ru.practicum.explore.service.comment;
 import org.springframework.data.domain.PageRequest;
 import ru.practicum.explore.dto.comment.CommentDto;
 import ru.practicum.explore.dto.comment.NewCommentDto;
-import ru.practicum.explore.dto.comment.UpdateCommentRequest;
 import ru.practicum.explore.model.comment.CommentStatus;
 
 import java.time.LocalDateTime;
@@ -17,9 +16,10 @@ public interface CommentService {
 
     CommentDto createCommentByUser(Long userId, NewCommentDto newCommentDto);
 
-    CommentDto updateCommentByUser(Long userId, UpdateCommentRequest updateCommentRequest);
+    CommentDto updateCommentByUser(Long userId, Long commentId, CommentDto updateCommentRequest);
 
     void deleteCommentByUser(Long userId, Long commentId);
+    void deleteCommentByAdmin(Long commentId);
 
     List<CommentDto> findCommentsByUser(Long userId, PageRequest pageRequest);
 
